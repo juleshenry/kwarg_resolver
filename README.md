@@ -1,5 +1,15 @@
 # K-Warg Swiss Army Knife
 
+The kwarg_solver decorator works in the following way:
+
+If a decorator is placed over an empty stub function, and a method is implemented
+
+this decorator finds the correct internal method 'decorated_method__X' and calls it with 
+
+all but one argument not present in the original.
+
+
+
 Example : 
 
 ```
