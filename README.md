@@ -1,4 +1,4 @@
-# K-Warg Swiss Army Knife
+# K-Warg Swiss Army Knife (KWASAK)
 
 The kwarg_solver decorator works in the following way:
 
