@@ -53,7 +53,7 @@ Fri Jul 28 20:37:55 CDT 2023
 Published.
 """
 import inspect
-def kwarg_solver(func):
+def kwasak(func):
     """
     Intention:
     base method is `vanilla`... that means no `__syntax`
@@ -64,7 +64,7 @@ def kwarg_solver(func):
     [1:-1] kwargs in order to resolve the missing parameter
     """
 
-    def wrapper(self, *args, **kwargs):
+    def wrapper(self, **kwargs):
         method_name = func.__name__
         all_parameters = list(inspect.signature(func).parameters)[1:-1]
         missing_arg = [kw for kw in all_parameters if kw not in kwargs]
@@ -81,7 +81,7 @@ def kwarg_solver(func):
 
 def einstein():
     class Einstein:
-        @kwarg_solver
+        @kwasak
         def einstein(s, e: float = None, m: float = None, **kwargs):
             return  # decorator skips return
 
@@ -103,7 +103,7 @@ def einstein():
 
 def pythagoras():
     class Pythagoras:
-        @kwarg_solver
+        @kwasak
         def pythagorean(s, a: float = None, b: float = None, c: float = None, **kwargs):
             return
 
@@ -121,16 +121,16 @@ def pythagoras():
 
     ans = p.pythagorean(a=12, c=13)  # 5
     assert 5 == (ans)
-    ans = p.pythagorean(a=12, b=5)  # 12
-    assert 12 == (ans)
-    ans = p.pythagorean(b=12, c=13)  # 13
-    assert 13 == (ans)
+    ans = p.pythagorean(a=12, b=5)  # 13
+    assert 13 == (ans), ans
+    ans = p.pythagorean(b=5, c=13)  # 12
+    assert 12 == (ans), ans
 
 
 def vacuum_theory():
     class VacuumTheory:
 
-        @kwarg_solver
+        @kwasak
         def eqn_1_3(s, k=None, m=None, T=None, **kwargs):
             return 
 
@@ -158,15 +158,15 @@ def vacuum_theory():
     VT = VacuumTheory()
 
     ans = VT.eqn_1_3(k=1, T=3)  # 5
-    assert 5 == (ans)
+    assert 5 == (ans), ans
     ans = VT.eqn_1_3(m=2, T=3)  # 12
-    assert 12 == (ans)
+    assert 12 == (ans), f"{ans}"
     ans = VT.eqn_1_3(m=2, k=1)  # 13
-    assert 13 == (ans)
+    assert 13 == (ans), ans
 
 if __name__=='__main__':
     einstein()
     pythagoras()
     vacuum_theory()
-    print(✅)
+    print('✅')
 

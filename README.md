@@ -1,21 +1,17 @@
 # K-Warg Swiss Army Knife (KWASAK)
 
-The kwarg_solver decorator works in the following way:
+The `kwasak` decorator works in the following way:
 
-If a decorator is placed over an empty stub function, and a method is implemented
+If a decorator is placed over an empty stub function, and a method is implemented, this decorator finds the correct internal method '$METHOD__X' and calls it with all but one argument not present in the original. 
 
-this decorator finds the correct internal method 'decorated_method__X' and calls it with 
-
-all but one argument not present in the original.
-
-
-
-Example : 
+Here is an illustrative example: 
 
 ```
+from kwasak import kwasak
+
 def pythagoras():
     class Pythagoras:
-        @kwarg_solver
+        @kwasak
         def pythagorean(s, a: float = None, b: float = None, c: float = None, **kwargs):
             return
 
@@ -39,3 +35,5 @@ def pythagoras():
     assert 13 == (ans)
 
 ```
+
+Happy mathing!
